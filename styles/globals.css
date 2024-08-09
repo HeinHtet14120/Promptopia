@@ -168,3 +168,12 @@
 .flex-between {
   @apply flex justify-between items-center;
 }
+
+.bg-ai {
+
+  @app
+  background: linear-gradient(90deg, #6a0dad, #3498db);
+}
+.bg-ai-hover:hover {
+  background: linear-gradient(90deg, #3498db, #6a0dad);
+}

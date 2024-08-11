@@ -7,6 +7,9 @@ import { usePathname, useRouter } from "next/navigation";
 
 const PromptCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
 
+  const router = useRouter();
+  const pathName = usePathname();
+  const { data: session} = useSession();
   const [copied, setCopied] = useState("");
 
   const handleCopy = () => {
@@ -38,8 +41,17 @@ const PromptCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
       </div>
       <p className=" my-4 font-satoshi text-sm text-gray-700">{post.prompt}</p>
       <p className=" font-inter text-sm blue_gradient cursor-pointer"
-      onClick={() => handleTagClick && handleTagClick(post.tag)}
-      >{post.tag}</p>
+        onClick={() => handleTagClick && handleTagClick(post.tag)}
+      >
+        {post.tag}
+      </p>
+
+      {session?.user.id === post.creator._id && pathName === '/profile' && (
+        <div className=" mt-5 flex-center gap-4 border-t border-gray-300 pt-3">
+          <Image src={'/assets/images/edit.png'} width={20} height={20} className=" cursor-pointer" onClick={handleEdit}/>
+          <Image src={'/assets/images/delete.png'} width={18} height={20} className=" cursor-pointer" onClick={handleDelete}/>
+        </div>
+      )}
 
     </div>
   )

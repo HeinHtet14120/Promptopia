@@ -37,7 +37,9 @@ const Feed = () => {
 
   const searchFun = (searchText) => {
 
-    const regex = new RegExp(searchText, "i"); // 'i' flag for case-insensitive search
+    const escapedQuery = searchText.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+    const regex = new RegExp(escapedQuery, "i"); // 'i' flag for case-insensitive search
     return posts.filter(
       (item) =>
         regex.test(item.creator.username) ||

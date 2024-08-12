@@ -23,11 +23,13 @@ const userProfile = () => {
 
     
     if(session?.user.id)  fetchPosts();
-  }, [])
+  }, [session?.user.id])
 
   const handleEdit = (post) => {
     router.push(`/update-prompt?id=${post._id}`)
   }
+
+  
   const handleDelete = async (post) => {
     const hasConfirmed = confirm("Are you sure want to delete this prompt?");
 

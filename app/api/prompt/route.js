@@ -6,6 +6,8 @@ export const GET = async (request) => {
         await connectToDB();
 
         const prompts = await Prompt.find({}).populate('creator');
+
+        console.log("this is feed prompt : ",prompts)
         
         return new Response(JSON.stringify(prompts), {
             status: 200
